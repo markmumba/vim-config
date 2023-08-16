@@ -1,7 +1,7 @@
 
 set shiftwidth=4
 set tabstop=4
-set scrolloff=10
+set scrolloff=40
 set expandtab
 set wildmenu
 set wildmode=list:longest
@@ -21,19 +21,24 @@ Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
 Plug 'xero/miasma.nvim'
-Plug 'lambdalisue/battery.vim'
+Plug 'tomasiser/vim-code-dark'
 Plug 'leafgarland/typescript-vim'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' } 
-Plug 'tribela/vim-transparent' 
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jlanzarotta/bufexplorer'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 call plug#end()
 
-
-set termguicolors  
-colorscheme challenger_deep
-
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+syntax on
+set t_Co=256
+set cursorline
+colorscheme codedark 
 
 nnoremap <leader>t :Ex <CR>
 nnoremap <leader>q :q <CR>
@@ -44,7 +49,6 @@ nnoremap <leader><CR> :so ~/.config/nvim/init.vim <CR>
 nnoremap <C-c> :bn <CR>
 nnoremap cc <esc>:!
 inoremap jj <esc>
-
 
 let g:coc_global_extensions = [
   \ 'coc-tsserver'

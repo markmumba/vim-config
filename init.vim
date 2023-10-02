@@ -16,6 +16,7 @@ let mapleader = " "
 
 call plug#begin( '~/.vim/plugged')
 
+Plug 'github/copilot.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -28,8 +29,11 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jlanzarotta/bufexplorer'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'ryanoasis/vim-devicons'
+Plug 'arzg/vim-colors-xcode'
 call plug#end()
 
+set encoding=UTF-8
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -38,9 +42,11 @@ endif
 syntax on
 set t_Co=256
 set cursorline
-colorscheme codedark 
+
 
 nnoremap <leader>t :Ex <CR>
+nnoremap <leader>h :<C-w>h
+nnoremap <leader>l :<C-wl>
 nnoremap <leader>q :q <CR>
 nnoremap <leader>w :w <CR>
 nnoremap <leader>f :Files <CR>
@@ -73,6 +79,12 @@ let g:go_fmt_autosave = 1
 let g:go_fmt_command = "goimports"
 
 let g:go_auto_type_info = 1
+let g:syntastic_go_checkers_autosave = 1
+let g:syntastic_go_checkers_autosave_enabled = ['govet', 'errcheck', 'go']
+
+let g:go_highlight_diagnostic_warnings = 1
+let g:go_highlight_diagnostic_errors = 1
+let g:go_highlight_function_parameters = 0
 
 function! s:build_go_files()
   let l:file = expand('%')
